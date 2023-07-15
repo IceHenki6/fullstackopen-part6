@@ -6,7 +6,6 @@ const AnecdoteList = () => {
   const dispatch = useDispatch()
 
   const anecdotes = useSelector(({filter, anecdotes}) => {
-    console.log(anecdotes)
     if (filter !== ''){
       const expression = new RegExp(filter, 'i')
       const filteredAnecdotes = anecdotes.filter(a => expression.test(a.content))
@@ -18,11 +17,8 @@ const AnecdoteList = () => {
   
 
   const vote = (anecdote) => {
-    dispatch(voteAnecdote(anecdote.id))
+    dispatch(voteAnecdote(anecdote))
     dispatch(setNotification(`voted anecdote: ${anecdote.content}`))
-    setTimeout(() => {
-      dispatch(setNotification(null))
-    }, "5000")
   }
 
 
